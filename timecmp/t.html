@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution Time Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Time Complexity Execution Times</h1>
+    <canvas id="executionTimeChart" width="800" height="400"></canvas>
+
+    <script>
+        // Fetch the JSON data (this assumes the file is accessible through a web server)
+        fetch('executionTimes.json')
+            .then(response => response.json())
+            .then(data => {
+                // Input sizes
+                let sizes = data.inputSizes;
+                
+                // Initialize data for each time complexity
+                let timeData = {
+                    constant: [],
+                    linear: [],
+                    quadratic: [],
+                    cubic: [],
+                    exponential: [],
+                    squareRoot: [],
+                    multiplicative: [],
+                    logarithmic: []
+                };
+
+                // Process the execution times into categories
+                sizes.forEach((size, index) => {
+                    timeData.constant.push(data.executionTimes.constant[index]);
+                    timeData.linear.push(data.executionTimes.linear[index]);
+                    timeData.quadratic.push(data.executionTimes.quadratic[index]);
+                    timeData.cubic.push(data.executionTimes.cubic[index]);
+                    timeData.exponential.push(data.executionTimes.exponential[index]);
+                    timeData.squareRoot.push(data.executionTimes.squareRoot[index]);
+                    timeData.multiplicative.push(data.executionTimes.multiplicative[index]);
+                    timeData.logarithmic.push(data.executionTimes.logarithmic[index]);
+                });
+
+                // Create the chart
+                var ctx = document.getElementById('executionTimeChart').getContext('2d');
+                var executionTimeChart = new Chart(ctx, {
+                    type: 'line', // Line chart to show time complexity trends
+                    data: {
+                        labels: sizes, // The x-axis is the array sizes
+                        datasets: [
+                            {
+                                label: 'Constant Time (O(1)) - firstElementOfArray()',
+                                data: timeData.constant,
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                fill: false,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Linear Time (O(n)) - sumOfArray()',
+                                data: timeData.linear,
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                fill: false,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Quadratic Time (O(n^2)) - sumOfSquaresOfArray()',
+                                data: timeData.quadratic,
+                                borderColor: 'rgba(255, 159, 64, 1)',
+                                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                                fill: false,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Cubic Time (O(n^3)) - tripletSum()',
+                                data: timeData.cubic,
+                                borderColor: 'rgba(153, 255, 51, 1)',
+                                backgroundColor: 'rgba(153, 255, 51, 0.2)',
+                                fill: false,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Exponential Time (O(2^n)) - exponentialFibo()',
+                                data: timeData.exponential,
+                                borderColor: 'rgba(255, 205, 86, 1)',
+                                backgroundColor: 'rgba(255, 205, 86, 0.2)',
+                                fill: false,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Square Root Time (O(√n)) - isPrime()',
+                                data: timeData.squareRoot,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                fill: false,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Multiplicative Time (O(n*m)) - pairForSum()',
+                                data: timeData.multiplicative,
+                                borderColor: 'rgba(153, 102, 255, 1)',
+                                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                                fill: false,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Logarithmic Time (O(log n)) - binarySearch()',
+                                data: timeData.logarithmic,
+                                borderColor: 'rgba(255, 159, 223, 1)',
+                                backgroundColor: 'rgba(255, 159, 223, 0.2)',
+                                fill: false,
+                                borderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Execution Time (ms)'
+                                },
+                                type: 'logarithmic',  // Set the Y-axis scale to logarithmic for better scaling
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return value.toFixed(2);  // Formatting log values
+                                    }
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Input Size'
+                                }
+                            }
+                        },
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(err => {
+                console.error("Error loading JSON data:", err);
+            });
+    </script>
+</body>
+</html>

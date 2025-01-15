@@ -1,0 +1,194 @@
+[
+  {
+    "function": "swap",
+    "size": 10,
+    "executionTime": "0.0302",
+    "memoryConsumed": 0.0036773681640625
+  },
+  {
+    "function": "revarr",
+    "size": 10,
+    "executionTime": "0.0453",
+    "memoryConsumed": 0.00087738037109375
+  },
+  {
+    "function": "subMatrix",
+    "size": 10,
+    "executionTime": "0.0494",
+    "memoryConsumed": 0.0030059814453125
+  },
+  {
+    "function": "binarysearch",
+    "size": 10,
+    "executionTime": "0.0445",
+    "memoryConsumed": 0.000823974609375
+  },
+  {
+    "function": "swap",
+    "size": 50,
+    "executionTime": "0.0014",
+    "memoryConsumed": 0.00079345703125
+  },
+  {
+    "function": "revarr",
+    "size": 50,
+    "executionTime": "0.1083",
+    "memoryConsumed": 0.00965118408203125
+  },
+  {
+    "function": "subMatrix",
+    "size": 50,
+    "executionTime": "0.0957",
+    "memoryConsumed": 0.06102752685546875
+  },
+  {
+    "function": "binarysearch",
+    "size": 50,
+    "executionTime": "0.0025",
+    "memoryConsumed": 0.000457763671875
+  },
+  {
+    "function": "swap",
+    "size": 100,
+    "executionTime": "0.0004",
+    "memoryConsumed": 0.0004119873046875
+  },
+  {
+    "function": "revarr",
+    "size": 100,
+    "executionTime": "0.0057",
+    "memoryConsumed": 0.00417327880859375
+  },
+  {
+    "function": "subMatrix",
+    "size": 100,
+    "executionTime": "0.7713",
+    "memoryConsumed": 0.22861480712890625
+  },
+  {
+    "function": "binarysearch",
+    "size": 100,
+    "executionTime": "0.0098",
+    "memoryConsumed": 0.0006866455078125
+  },
+  {
+    "function": "swap",
+    "size": 200,
+    "executionTime": "0.0003",
+    "memoryConsumed": 0.0004119873046875
+  },
+  {
+    "function": "revarr",
+    "size": 200,
+    "executionTime": "0.0093",
+    "memoryConsumed": 0.00441741943359375
+  },
+  {
+    "function": "subMatrix",
+    "size": 200,
+    "executionTime": "1.9054",
+    "memoryConsumed": 0.1609649658203125
+  },
+  {
+    "function": "binarysearch",
+    "size": 200,
+    "executionTime": "0.0051",
+    "memoryConsumed": 0.0004730224609375
+  },
+  {
+    "function": "swap",
+    "size": 500,
+    "executionTime": "0.0004",
+    "memoryConsumed": 0.0004119873046875
+  },
+  {
+    "function": "revarr",
+    "size": 500,
+    "executionTime": "0.0176",
+    "memoryConsumed": 0.01140594482421875
+  },
+  {
+    "function": "subMatrix",
+    "size": 500,
+    "executionTime": "8.1563",
+    "memoryConsumed": 1.5769271850585938
+  },
+  {
+    "function": "binarysearch",
+    "size": 500,
+    "executionTime": "0.0035",
+    "memoryConsumed": 0.000518798828125
+  },
+  {
+    "function": "swap",
+    "size": 1000,
+    "executionTime": "0.0005",
+    "memoryConsumed": 0.0004119873046875
+  },
+  {
+    "function": "revarr",
+    "size": 1000,
+    "executionTime": "0.0315",
+    "memoryConsumed": 0.027740478515625
+  },
+  {
+    "function": "subMatrix",
+    "size": 1000,
+    "executionTime": "18.0817",
+    "memoryConsumed": 13.193756103515625
+  },
+  {
+    "function": "binarysearch",
+    "size": 1000,
+    "executionTime": "0.0061",
+    "memoryConsumed": 0.000518798828125
+  },
+  {
+    "function": "swap",
+    "size": 2000,
+    "executionTime": "0.0012",
+    "memoryConsumed": 0.0004119873046875
+  },
+  {
+    "function": "revarr",
+    "size": 2000,
+    "executionTime": "0.0671",
+    "memoryConsumed": 0.06511688232421875
+  },
+  {
+    "function": "subMatrix",
+    "size": 2000,
+    "executionTime": "86.1662",
+    "memoryConsumed": 37.94960021972656
+  },
+  {
+    "function": "binarysearch",
+    "size": 2000,
+    "executionTime": "0.0067",
+    "memoryConsumed": 0.000518798828125
+  },
+  {
+    "function": "swap",
+    "size": 5000,
+    "executionTime": "0.0008",
+    "memoryConsumed": 0.0004119873046875
+  },
+  {
+    "function": "revarr",
+    "size": 5000,
+    "executionTime": "0.2533",
+    "memoryConsumed": 0.16025543212890625
+  },
+  {
+    "function": "subMatrix",
+    "size": 5000,
+    "executionTime": "463.1442",
+    "memoryConsumed": 207.3461151123047
+  },
+  {
+    "function": "binarysearch",
+    "size": 5000,
+    "executionTime": "0.0052",
+    "memoryConsumed": 0.0005035400390625
+  }
+]

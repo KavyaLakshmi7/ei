@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Complexity Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        canvas {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h2>Memory Complexity Visualization</h2>
+    <canvas id="memoryChart" width="800" height="400"></canvas>
+    <script>
+        // Fetch memory usage data from executionTimesAndMemory.json
+        fetch('executionTimesAndMemory.json')
+            .then(response => response.json())
+            .then(data => {
+                const inputSizes = data.inputSizes;
+                const memoryUsage = data.memoryUsage;
+
+                // Create the chart for memory usage
+                const ctx = document.getElementById('memoryChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: inputSizes, // X-axis: Input sizes
+                        datasets: [
+                            {
+                                label: 'Constant (O(1))',
+                                data: memoryUsage.constant,
+                                backgroundColor: '#3498db', // FlatUI Blue
+                                fill: true
+                            },
+                            {
+                                label: 'Linear (O(n))',
+                                data: memoryUsage.linear,
+                                backgroundColor: '#2ecc71', // FlatUI Green
+                                fill: true
+                            },
+                            {
+                                label: 'Quadratic (O(n²))',
+                                data: memoryUsage.quadratic,
+                                backgroundColor: '#e74c3c', // FlatUI Red
+                                fill: true
+                            },
+                            {
+                                label: 'Cubic (O(n³))',
+                                data: memoryUsage.cubic,
+                                backgroundColor: '#9b59b6', // FlatUI Purple
+                                fill: true
+                            },
+                            {
+                                label: 'Exponential (O(2^n))',
+                                data: memoryUsage.exponential,
+                                backgroundColor: '#f39c12', // FlatUI Orange
+                                fill: true
+                            },
+                            {
+                                label: 'Square Root (O(√n))',
+                                data: memoryUsage.squareRoot,
+                                backgroundColor: '#1abc9c', // FlatUI Cyan
+                                fill: true
+                            },
+                            {
+                                label: 'Multiplicative (O(n * m))',
+                                data: memoryUsage.multiplicative,
+                                backgroundColor: '#e84393', // FlatUI Magenta
+                                fill: true
+                            },
+                            {
+                                label: 'Logarithmic (O(log n))',
+                                data: memoryUsage.logarithmic,
+                                backgroundColor: '#8e44ad', // FlatUI Brown
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Memory Usage vs Input Size (Memory Complexity)',
+                                font: {
+                                    size: 18,
+                                    weight: 'bold'
+                                },
+                                color: '#34495e'
+                            },
+                            legend: {
+                                labels: {
+                                    font: {
+                                        size: 14
+                                    },
+                                    color: '#34495e'
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw.toFixed(2)} MB`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Input Size (n)',
+                                    font: {
+                                        size: 14
+                                    },
+                                    color: '#34495e'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Memory Usage (MB)',
+                                    font: {
+                                        size: 14
+                                    },
+                                    color: '#34495e'
+                                },
+                                beginAtZero: true,
+                                ticks: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    color: '#34495e'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading data:', error));
+    </script>
+</body>
+</html>

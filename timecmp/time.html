@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution Time Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist"></script>
+</head>
+<body>
+    <h1>Time Complexity Execution Times</h1>
+    <div id="chart" style="width: 80%; margin: auto;"></div>
+
+    <script>
+        // Fetch the execution times data
+        fetch('executionTimes.json')
+            .then(response => response.json())
+            .then(data => {
+                const inputSizes = data.inputSizes;
+                const executionTimes = data.executionTimes;
+
+                // Create data traces for each time complexity
+                const traces = Object.keys(executionTimes).map(key => ({
+                    x: inputSizes,
+                    y: executionTimes[key],
+                    mode: 'lines+markers',
+                    name: key
+                }));
+
+                // Layout configuration
+                const layout = {
+                    title: 'Time Complexity Execution Times',
+                    xaxis: { title: 'Input Size' },
+                    yaxis: { title: 'Execution Time (ms)', type: 'log' } // Use logarithmic scale if needed
+                };
+
+                // Plot the graph
+                Plotly.newPlot('chart', traces, layout);
+            })
+            .catch(error => console.log('Error loading the JSON data:', error));
+    </script>
+</body>
+</html>

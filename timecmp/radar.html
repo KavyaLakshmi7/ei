@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Complexity Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Radar Chart for Time Complexities</h2>
+    <canvas id="radarChart" width="800" height="400"></canvas>
+    <script>
+        fetch('executionTimes.json')
+            .then(response => response.json())
+            .then(data => {
+                const inputSizes = data.inputSizes;
+                const executionTimes = data.executionTimes;
+
+                const ctx = document.getElementById('radarChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: inputSizes,
+                        datasets: [
+                            {
+                                label: 'Constant (O(1))',
+                                data: executionTimes.constant,
+                                backgroundColor: 'blue',
+                                borderColor: 'blue',
+                                fill: true
+                            },
+                            {
+                                label: 'Linear (O(n))',
+                                data: executionTimes.linear,
+                                backgroundColor: 'green',
+                                borderColor: 'green',
+                                fill: true
+                            },
+                            {
+                                label: 'Quadratic (O(n²))',
+                                data: executionTimes.quadratic,
+                                backgroundColor: 'red',
+                                borderColor: 'red',
+                                fill: true
+                            },
+                            {
+                                label: 'Cubic (O(n³))',
+                                data: executionTimes.cubic,
+                                backgroundColor: 'purple',
+                                borderColor: 'purple',
+                                fill: true
+                            },
+                            {
+                                label: 'Exponential (O(2^n))',
+                                data: executionTimes.exponential,
+                                backgroundColor: 'orange',
+                                borderColor: 'orange',
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Time Complexity Radar Chart'
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: { display: true },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading data:', error));
+    </script>
+</body>
+</html>

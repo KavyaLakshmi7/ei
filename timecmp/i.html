@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Complexity Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Grouped Bar Chart for Time Complexities</h2>
+    <canvas id="barChart" width="800" height="400"></canvas>
+    <script>
+        fetch('executionTimes.json')
+            .then(response => response.json())
+            .then(data => {
+                const inputSizes = data.inputSizes;
+                const executionTimes = data.executionTimes;
+
+                const ctx = document.getElementById('barChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: inputSizes,
+                        datasets: [
+                            {
+                                label: 'Constant (O(1))',
+                                data: executionTimes.constant,
+                                backgroundColor: 'blue'
+                            },
+                            {
+                                label: 'Linear (O(n))',
+                                data: executionTimes.linear,
+                                backgroundColor: 'green'
+                            },
+                            {
+                                label: 'Quadratic (O(n²))',
+                                data: executionTimes.quadratic,
+                                backgroundColor: 'red'
+                            },
+                            {
+                                label: 'Cubic (O(n³))',
+                                data: executionTimes.cubic,
+                                backgroundColor: 'purple'
+                            },
+                            {
+                                label: 'Exponential (O(2^n))',
+                                data: executionTimes.exponential,
+                                backgroundColor: 'orange'
+                            },
+                            {
+                                label: 'Square Root (O(√n))',
+                                data: executionTimes.squareRoot,
+                                backgroundColor: 'cyan'
+                            },
+                            {
+                                label: 'Multiplicative (O(n * m))',
+                                data: executionTimes.multiplicative,
+                                backgroundColor: 'magenta'
+                            },
+                            {
+                                label: 'Logarithmic (O(log n))',
+                                data: executionTimes.logarithmic,
+                                backgroundColor: 'brown'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Time Complexity Visualization (Grouped Bar Chart)'
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Input Size (n)'
+                                },
+                                stacked:true
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Execution Time (ms)'
+                                },
+                                beginAtZero: true,
+                                stacked:true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading data:', error));
+    </script>
+</body>
+</html>
